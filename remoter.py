@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import socket
-from flask import Flask
+from flask import Flask, render_template
 import os, subprocess, sys
 
 
@@ -105,26 +105,11 @@ elif args.command == "local" :
 
 
 
-# ==================================	WebApp Initializer
-template_folder=os.path.abspath("webresources/templates")
-app = Flask( __name__, template_folder = template_folder )
-
-
-@app.route('/')
-def hello():
-    return "Hello World!"
-
-
-
-
-# ==================================
 
 
 # sys.exit(0)
 
 # ==================================	Command Runner
-
-
 
 
 for command_list in command_array :
@@ -143,28 +128,42 @@ for command_list in command_array :
 # ==================================
 
 
+# ==================================	WebApp Initializer
+template_folder=os.path.abspath("webresources/templates")
+app = Flask( __name__, template_folder = template_folder )
+
+
+@app.route('/')
+def hello():
+    # return "Hello World!"
+    return render_template("index.html", command_array = command_array)
+
+
+@app.route('/groups')
+def groupsPage():
+
+    return render_template("groups.html", command_array = command_array)
+
+
+@app.route('/commands')
+def commandsPage():
+
+    return render_template("commands.html", command_array = command_array)
+
+
+# ==================================
 
 
 
-# s = client
 
-# os.dup2(0, client.fileno())
-# os.dup2(1, client.fileno())
-# os.dup2(2, client.fileno())
+
 if __name__ == '__main__':
-	app.run()
+	flask_port = 8085
+	os.system(" firefox http://localhost:%d" % flask_port)
+	app.run( port = flask_port )
 
 
-client.settimeout(0.5)
-while 1 :
-# 	pass
 
-	data = raw_input('> ')
-	client.send(data+'\n')
-	print client.recv(1024)
-
-client.close()
-server.close()
 # p=subprocess.call("/bin/sh",shell=True);
 
 # print client.recv(1024)
