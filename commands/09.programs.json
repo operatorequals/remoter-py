@@ -45,7 +45,7 @@
       "description": "Locate 'useful' programs (netcat, wget etc)"
     }, 
     {
-      "command": "o which \\$pr; done", 
+      "command": "o which $pr; done", 
       "description": "List available compilers"
     }
   ], 

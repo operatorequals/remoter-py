@@ -5,12 +5,12 @@
       "description": "Display environmental variables"
     }, 
     {
-      "command": "echo \\$PATH", 
+      "command": "echo $PATH", 
       "description": "Path information"
     }, 
     {
-      "command": "\"history", 
-      "description": "\"Displays command history of current user"
+      "command": "history", 
+      "description": "Displays command history of current user"
     }, 
     {
       "command": "pwd", 

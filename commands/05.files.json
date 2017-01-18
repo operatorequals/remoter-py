@@ -13,7 +13,7 @@
       "description": "Find GUID files"
     }, 
     {
-      "command": "find / ! -path \\\"*/proc/*\\\" -perm -2 -type f -print 2>/dev/null", 
+      "command": "find / ! -path \"*/proc/*\" -perm -2 -type f -print 2>/dev/null", 
       "description": "Find world-writeable files excluding those in /proc"
     }, 
     {
@@ -45,7 +45,7 @@
       "description": "Check for interesting ssh files in the current users\u2019 directory"
     }, 
     {
-      "command": "find / -name \\\"id_dsa*\\\" -o -name \\\"id_rsa*\\\" -o -name \\\"known_hosts\\\" -o -name \\\"authorized_hosts\\\" -o -name \\\"authorized_keys\\\" 2>/dev/null |xargs -r ls -la", 
+      "command": "find / -name \"id_dsa*\" -o -name \"id_rsa*\" -o -name \"known_hosts\" -o -name \"authorized_hosts\" -o -name \"authorized_keys\" 2>/dev/null |xargs -r ls -la", 
       "description": "Find SSH keys/host information"
     }, 
     {
@@ -54,7 +54,7 @@
     }, 
     {
       "command": "grep -l -i pass /var/log/*.log 2>/dev/null", 
-      "description": "Check log files for keywords (\u2018pass\u2019 in this example) and show positive matches"
+      "description": "Check log files for keywords ('pass' in this example) and show positive matches"
     }, 
     {
       "command": "find /var/log -name *.log -type f -exec ls -la {} \\; 2>/dev/null", 

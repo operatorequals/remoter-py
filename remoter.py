@@ -35,7 +35,6 @@ reverse_parser.add_argument("--port", '-p', help = "TCP port to wait for the she
 
 args = parser.parse_args()
 
-
 # ==================================
 
 # sys.exit(0)
@@ -48,17 +47,18 @@ command_directory = args.command_dir
 
 command_array = []
 
-for file in os.listdir(command_directory) :
-	file = command_directory + os.sep + file
+for filename in sorted( os.listdir(command_directory) ) :
+	file = command_directory + os.sep + filename
 	if os.path.isfile( file ) and file.endswith('.json') :
-		command_array.append( json.load( open( file ) ) )
+		jsonDict = json.load( open( file ) )
+		jsonDict['filename'] = filename
+		command_array.append( jsonDict )
 
 from pprint import pprint
 # pprint(command_array)
 # '''
 
 # ==================================
-
 
 
 client = None
@@ -69,6 +69,7 @@ def runSocketCommand( comm ) :
 def runLocalhostCommand( comm ) :
 	return os.popen( comm ).read()
 
+# SSH pending
 # print args
 
 # ==================================	Socket Creator
@@ -134,8 +135,7 @@ app = Flask( __name__, template_folder = template_folder )
 
 
 @app.route('/')
-def hello():
-    # return "Hello World!"
+def index():
     return render_template("index.html", command_array = command_array)
 
 
@@ -145,10 +145,21 @@ def groupsPage():
     return render_template("groups.html", command_array = command_array)
 
 
-@app.route('/commands')
-def commandsPage():
+@app.route('/command/<filename>')
+def commandsPage( filename = filename ):
+	for comm_list in command_array[::-1] :
+		if filename == comm_list['filename'] :
+			break
+	print filename
+	return render_template("commands.html", comm_list = comm_list )
 
-    return render_template("commands.html", command_array = command_array)
+
+@app.route('/commands')
+def commandListPage():
+
+    return render_template("command_list.html", command_array = command_array)
+
+
 
 
 # ==================================
@@ -159,11 +170,8 @@ def commandsPage():
 
 if __name__ == '__main__':
 	flask_port = 8085
-	os.system(" firefox http://localhost:%d" % flask_port)
+	os.system(" firefox http://localhost:%d &" % flask_port)
 	app.run( port = flask_port )
 
 
 
-# p=subprocess.call("/bin/sh",shell=True);
-
-# print client.recv(1024)

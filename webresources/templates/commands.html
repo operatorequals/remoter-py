@@ -11,13 +11,9 @@
 
 	<body>
 
-
-		
-	{% for comm_list in command_array %}
-
-<!---		{{ comm_list }}		-->
-	<h3 border="1"> {{ comm_list['name'] }} </h4>
+		<h3 border="1"> {{ comm_list['name'] }} </h3>
 		{% for comm in comm_list['commands'] %}
+
 		<div collapsible="true"> {{ comm['description'] }}</div>
 
 		<table border="1" width="100%">
@@ -36,13 +32,12 @@
 		</tr>
 
 		</table>
+
 		<br><br>
 
 		{% endfor %}
 
-	{% endfor %}
 
 	</body>
-
 
 </html>
