@@ -9,7 +9,7 @@
       "description": "List all groups on the system"
     }, 
     {
-      "command": "for i in $(cat /etc/passwd 2>/dev/null | cut -d: -f1 2>/dev/null);do id \\$i; done 2>/dev/null", 
+      "command": "for i in $(cat /etc/passwd 2>/dev/null | cut -d: -f1 2>/dev/null);do id $i; done 2>/dev/null", 
       "description": "List all uid's and respective group memberships"
     }, 
     {
@@ -17,7 +17,7 @@
       "description": "Show user hashes - Privileged command"
     }, 
     {
-      "command": "grep -v -E '^#' /etc/passwd | awk -F: '\\$3 == 0 { print \\$1}'", 
+      "command": "grep -v -E '^#' /etc/passwd | awk -F: '$3 == 0 { print $1}'", 
       "description": "List all super user accounts"
     }, 
     {
@@ -37,7 +37,7 @@
       "description": "Information on when the specified user last logged in"
     }, 
     {
-      "command": "lastlog | grep -v \\\"Never\\\"", 
+      "command": "lastlog | grep -v 'Never'", 
       "description": "Entire list of previously logged on users"
     }
   ], 

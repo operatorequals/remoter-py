@@ -114,13 +114,13 @@ elif args.command == "local" :
 
 for command_list in command_array :
 
-	print command_list
+	# print command_list
 	for command in command_list['commands'] :
 
 		response = runCommand( command['command'] )
-		print command['command']
-		print response
-		print
+		# print command['command']
+		# print response
+		# print
 
 		command['response'] = response 
 

@@ -16,26 +16,28 @@
 	{% for comm_list in command_array %}
 
 <!---		{{ comm_list }}		-->
+	<h3 border="1"> {{ comm_list['name'] }} </h4>
 		{% for comm in comm_list['commands'] %}
+		<div collapsible="true"> {{ comm['description'] }}</div>
 
-		<table border="1" width="100%" height="100%">
+		<table border="1" width="100%">
 		<tr>
 			<td>
-				<pre>{{ comm['command'] }}</pre>
+				<pre style="white-space: pre-wrap; word-wrap: break-word;">$ {{ comm['command'] }}</pre>
 
 			</td>
 
-			<div collapse="true"> {{ comm['description'] }}</div>
 		</tr>
 
 		<tr>
-			<td><pre>{{ comm['response'] }}</pre>
+			<td><pre style="white-space: pre-wrap; word-wrap: break-word;">{{ comm['response'] }}</pre>
 			</td>
 
 		</tr>
 
 		</table>
-		<div>
+		<br><br>
+
 		{% endfor %}
 
 	{% endfor %}
