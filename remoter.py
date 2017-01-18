@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import socket
-import flask
+from flask import Flask
 import os, subprocess, sys
 
 
@@ -98,12 +98,22 @@ elif args.command == "reverse" :
 elif args.command == "local" :
 	runCommand = runLocalhostCommand
 
+
+
 # ==================================
 
 
 
 
 # ==================================	WebApp Initializer
+template_folder=os.path.abspath("webresources/templates")
+app = Flask( __name__, template_folder = template_folder )
+
+
+@app.route('/')
+def hello():
+    return "Hello World!"
+
 
 
 
@@ -135,28 +145,15 @@ for command_list in command_array :
 
 
 
-comm = 'ls'
-
-server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server.setsockopt( socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-server.bind( ('0.0.0.0', 10000) )
-
-server.listen(5)
-
-client, address = server.accept()
-
-commands = ['ls', 'id', 'pwd', '']
-
-for comm in commands :
-	client.send( ' ' + comm + '\n')
-	print client.recv(512)
-
 
 # s = client
 
 # os.dup2(0, client.fileno())
 # os.dup2(1, client.fileno())
 # os.dup2(2, client.fileno())
+if __name__ == '__main__':
+	app.run()
+
 
 client.settimeout(0.5)
 while 1 :
