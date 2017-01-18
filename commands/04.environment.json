@@ -1,0 +1,29 @@
+{
+  "commands": [
+    {
+      "command": "env | grep -v 'LS_COLORS'", 
+      "description": "Display environmental variables"
+    }, 
+    {
+      "command": "echo \\$PATH", 
+      "description": "Path information"
+    }, 
+    {
+      "command": "\"history", 
+      "description": "\"Displays command history of current user"
+    }, 
+    {
+      "command": "pwd", 
+      "description": "Print working directory, i.e. 'where am I'"
+    }, 
+    {
+      "command": "cat /etc/profile", 
+      "description": "Display default system variables"
+    }, 
+    {
+      "command": "cat /etc/shells", 
+      "description": "Display available shells"
+    }
+  ], 
+  "name": "Environmental Information"
+}

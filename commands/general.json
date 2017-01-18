@@ -1,0 +1,7 @@
+{
+"commands" : [ {
+
+"command" : "ls", "description" : "dir list"}
+]
+
+}

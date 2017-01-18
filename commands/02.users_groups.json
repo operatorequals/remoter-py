@@ -1,0 +1,45 @@
+{
+  "commands": [
+    {
+      "command": "cat /etc/passwd", 
+      "description": "List all users on the system"
+    }, 
+    {
+      "command": "cat /etc/group", 
+      "description": "List all groups on the system"
+    }, 
+    {
+      "command": "for i in $(cat /etc/passwd 2>/dev/null | cut -d: -f1 2>/dev/null);do id \\$i; done 2>/dev/null", 
+      "description": "List all uid's and respective group memberships"
+    }, 
+    {
+      "command": "cat /etc/shadow", 
+      "description": "Show user hashes - Privileged command"
+    }, 
+    {
+      "command": "grep -v -E '^#' /etc/passwd | awk -F: '\\$3 == 0 { print \\$1}'", 
+      "description": "List all super user accounts"
+    }, 
+    {
+      "command": "who -a", 
+      "description": "Users currently logged in"
+    }, 
+    {
+      "command": "w", 
+      "description": "Who is currently logged in and what they are doing"
+    }, 
+    {
+      "command": "lastlog", 
+      "description": "Information on when all users last logged in"
+    }, 
+    {
+      "command": "lastlog -u $(whoami)", 
+      "description": "Information on when the specified user last logged in"
+    }, 
+    {
+      "command": "lastlog | grep -v \\\"Never\\\"", 
+      "description": "Entire list of previously logged on users"
+    }
+  ], 
+  "name": "Users and Groups"
+}

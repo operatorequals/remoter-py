@@ -1,0 +1,13 @@
+{
+  "commands": [
+    {
+      "command": "cat /proc/sys/kernel/randomize_va_space", 
+      "description": "ASLR (0/1/2)"
+    }, 
+    {
+      "command": "cat /proc/cpuinfo | grep nx", 
+      "description": "- FULL"
+    }
+  ], 
+  "name": "Buffer Overflow"
+}

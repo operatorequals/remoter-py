@@ -1,0 +1,13 @@
+{
+  "commands": [
+    {
+      "command": "id", 
+      "description": "Current user information"
+    }, 
+    {
+      "command": "cat /etc/sudoers", 
+      "description": "Who's allowed to do what as root - Privileged command"
+    }
+  ], 
+  "name": "User and Privilege Information"
+}

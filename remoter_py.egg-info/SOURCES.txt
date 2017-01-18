@@ -1,0 +1,7 @@
+README
+setup.py
+remoter/__init__.py
+remoter_py.egg-info/PKG-INFO
+remoter_py.egg-info/SOURCES.txt
+remoter_py.egg-info/dependency_links.txt
+remoter_py.egg-info/top_level.txt

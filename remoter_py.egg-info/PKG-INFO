@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: remoter-py
+Version: 0.0.1
+Summary: A tool for remote enumeration of Linux systems
+Home-page: UNKNOWN
+Author: John Torakis
+Author-email: john.torakis@gmail.com
+License: BSD
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Topic :: Security
+Classifier: License :: OSI Approved :: BSD License

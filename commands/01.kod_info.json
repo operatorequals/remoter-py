@@ -1,0 +1,33 @@
+{
+  "commands": [
+    {
+      "command": "uname -r", 
+      "description": "Kernel release"
+    }, 
+    {
+      "command": "uname -n", 
+      "description": "System hostname"
+    }, 
+    {
+      "command": "uname -m", 
+      "description": "Linux Kernel architecture (32 or 64 bit)"
+    }, 
+    {
+      "command": "cat /proc/version", 
+      "description": "Kernel Information"
+    }, 
+    {
+      "command": "cat /etc/*-release", 
+      "description": "Distribution Information"
+    }, 
+    {
+      "command": "cat /proc/info", 
+      "description": "CPU Information"
+    }, 
+    {
+      "command": "df -a", 
+      "description": "File system Information"
+    }
+  ], 
+  "name": "Kernel, Operating System and Device Information"
+}

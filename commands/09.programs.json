@@ -1,0 +1,53 @@
+{
+  "commands": [
+    {
+      "command": "sudo -V", 
+      "description": "Sudo version - does an exploit exist?"
+    }, 
+    {
+      "command": "httpd -v", 
+      "description": "Apache version"
+    }, 
+    {
+      "command": "apache2 -v", 
+      "description": "As above"
+    }, 
+    {
+      "command": "apache2ctl -M", 
+      "description": "List loaded Apache modules"
+    }, 
+    {
+      "command": "mysql --version", 
+      "description": "Installed MYSQL version details"
+    }, 
+    {
+      "command": "psql -V", 
+      "description": "Installed Postgres version details"
+    }, 
+    {
+      "command": "perl -v | head -2", 
+      "description": "Installed Perl version details"
+    }, 
+    {
+      "command": "java -version 2>&1", 
+      "description": "Installed Java version details"
+    }, 
+    {
+      "command": "python --version 2>&1", 
+      "description": "Installed Python version details"
+    }, 
+    {
+      "command": "ruby -v", 
+      "description": "Installed Ruby version details"
+    }, 
+    {
+      "command": "for pr in", 
+      "description": "Locate 'useful' programs (netcat, wget etc)"
+    }, 
+    {
+      "command": "o which \\$pr; done", 
+      "description": "List available compilers"
+    }
+  ], 
+  "name": "Programs Installed"
+}

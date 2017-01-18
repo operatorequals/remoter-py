@@ -1,0 +1,41 @@
+{
+  "commands": [
+    {
+      "command": "/sbin/ifconfig -a", 
+      "description": "List all network interfaces"
+    }, 
+    {
+      "command": "cat /etc/network/interfaces", 
+      "description": "As above"
+    }, 
+    {
+      "command": "arp -a", 
+      "description": "Display ARP communications"
+    }, 
+    {
+      "command": "route", 
+      "description": "Display route information"
+    }, 
+    {
+      "command": "cat /etc/resolv.conf", 
+      "description": "Show configured DNS sever addresses"
+    }, 
+    {
+      "command": "netstat -antp", 
+      "description": "List all TCP sockets and related PIDs (-p Privileged command)"
+    }, 
+    {
+      "command": "netstat -anup", 
+      "description": "List all UDP sockets and related PIDs (-p Privileged command)"
+    }, 
+    {
+      "command": "iptables -L", 
+      "description": "List rules - Privileged command"
+    }, 
+    {
+      "command": "cat /etc/services", 
+      "description": "View port numbers/services mappings"
+    }
+  ], 
+  "name": "Networking, Routing and Communications"
+}
