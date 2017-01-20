@@ -7,6 +7,18 @@
 		<script type="text/javascript" src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
 
 		<link title="no title" media="all" charset="utf-8" href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+
+		<style>
+		{% if meta['uid']!=0 %}
+		body {
+		    background-color: #BBFFBA;
+		}
+		{% else %}
+		body {
+		    background-color: #FF4136;
+		}
+		{% endif %}
+		</style>
 	</head>
 
 
@@ -21,9 +33,21 @@
 		{{ meta['version'] }}</h5>
 	</td>
 	<td align="center">
-	<h5> Scan for <u><b>'{{ meta['kernel'] }}' </b></u></h5>
-	<h4>	Executed as: <b>{{ meta['username'] }}</b> at <b>'{{ meta['date'] }}</b>' with command line : </h4>
-	<h5>	{{ meta['cli'] }} </h5>
+		<table><tr>
+		<h5> Scan for <u><b>'{{ meta['kernel'] }}' </b></u></h5>
+		<h4>	Executed as: <b>{{ meta['username'] }}</b> at <b>{{ meta['date'] }}</b> </h4>
+		</tr>
+		<tr>	<!-- Search Button -->
+			<td width="50%"></td>
+			<td align="center" width="50%">
+			<form action="search/" method="post">
+			<input name="keyword" type="text">
+			<input  type="submit" text="Search">
+			</form>
+			</td>
+		</tr>
+		</table>
+
 	</td>
 	</tr>
 

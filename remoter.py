@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import remoter
 import socket
-from flask import Flask, render_template
+from flask import Flask, request, render_template
 from flask_frozen import Freezer
 import os, subprocess, sys
 import json
@@ -139,29 +139,44 @@ app = Flask( __name__, template_folder = template_folder )
 
 
 @app.route('/')
-def index():
+def index() :
     return render_template("index.html", command_array = command_array, meta = metaDict)
 
 
 @app.route('/groups')
-def groupsPage():
-
+def groupsPage() :
     return render_template("groups.html", command_array = command_array)
 
 
 @app.route('/command/<filename>')
-def commandsPage( filename = filename ):
+def commandsPage( filename = filename ) :
 	for comm_list in command_array[::-1] :
 		if filename == comm_list['filename'] :
 			break
 	print filename
-	return render_template("commands.html", comm_list = comm_list )
+	return render_template("commands.html", comm_list = comm_list, meta = metaDict )
 
 
 @app.route('/commands')
-def commandListPage():
-
+def commandListPage() :
     return render_template("command_list.html", command_array = command_array)
+
+@app.route('/search/', methods = ['POST'])
+def searchPage() :
+	if request.method != 'POST':
+		return index()
+	data = request.form
+	if 'keyword' not in data :
+		return index()
+	keyword = data['keyword']
+	ret = {}
+	ret['commands'] = []
+	for command_list in command_array :
+		for command in command_list['commands'] :
+			if keyword in ' '.join( command.values() ) :
+				ret['commands'].append( command )
+	ret['name'] = 'Search for keyword "%s" - %d results' % (keyword, len( ret['commands'] ))
+	return render_template("commands.html", comm_list = ret, meta = metaDict )
 
 # ==================================
 

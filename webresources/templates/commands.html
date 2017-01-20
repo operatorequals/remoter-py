@@ -19,7 +19,7 @@
 		<table border="1" width="100%">
 		<tr>
 			<td>
-				<pre style="white-space: pre-wrap; word-wrap: break-word;">$ {{ comm['command'] }}</pre>
+				<pre style="white-space: pre-wrap; word-wrap: break-word;">{% if meta['uid']!=0 %}${% else %}#{% endif %} {{ comm['command'] }}</pre>
 
 			</td>
 
