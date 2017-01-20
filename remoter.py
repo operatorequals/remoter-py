@@ -14,6 +14,7 @@ parser = argparse.ArgumentParser( description = "A tool for remote system enumer
 # parser.add_argument( "type", choices = ["reverse", "bind", "localhost", "ssh"] ,help = "The connection type to the remote host")
 parser.add_argument("--command-file", '-f', help = "The file that contains the commands to run on the remote system in JSON format" )
 parser.add_argument("--command-dir", '-d', help = "The directory that contains the command files", default = "./commands")
+parser.add_argument("-P", help = "Port were the %s WebPage will be served" % sys.argv[0], type = int, default = 8085)
 subparsers = parser.add_subparsers( help = "The connection type with the remote host", dest='command')
 
 localhost_parser = subparsers.add_parser("local")
@@ -169,7 +170,8 @@ def commandListPage():
 
 
 if __name__ == '__main__':
-	flask_port = 8085
+	print args
+	flask_port = args.P
 	os.system(" firefox http://localhost:%d &" % flask_port)
 	app.run( port = flask_port )
 
