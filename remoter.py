@@ -1,8 +1,10 @@
 #!/usr/bin/env python
-
+import remoter
 import socket
 from flask import Flask, render_template
+from flask_frozen import Freezer
 import os, subprocess, sys
+import json
 
 
 
@@ -11,7 +13,6 @@ import argparse
 
 parser = argparse.ArgumentParser( description = "A tool for remote system enumeration" )
 
-# parser.add_argument( "type", choices = ["reverse", "bind", "localhost", "ssh"] ,help = "The connection type to the remote host")
 parser.add_argument("--command-file", '-f', help = "The file that contains the commands to run on the remote system in JSON format" )
 parser.add_argument("--command-dir", '-d', help = "The directory that contains the command files", default = "./commands")
 parser.add_argument("-P", help = "Port were the %s WebPage will be served" % sys.argv[0], type = int, default = 8085)
@@ -37,13 +38,12 @@ reverse_parser.add_argument("--port", '-p', help = "TCP port to wait for the she
 args = parser.parse_args()
 
 # ==================================
+# print args
 
-# sys.exit(0)
 
 
 # ==================================	Command Loader
 # '''
-import json
 command_directory = args.command_dir
 
 command_array = []
@@ -74,7 +74,6 @@ def runLocalhostCommand( comm ) :
 # print args
 
 # ==================================	Socket Creator
-
 
 if args.command == "bind" :
 	client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -109,10 +108,11 @@ elif args.command == "local" :
 
 
 
-# sys.exit(0)
 
 # ==================================	Command Runner
-
+metaDict = {}
+metaDict['version'] = remoter.version
+metaDict['cli'] = ' '.join(sys.argv)
 
 for command_list in command_array :
 
@@ -120,14 +120,17 @@ for command_list in command_array :
 	for command in command_list['commands'] :
 
 		response = runCommand( command['command'] )
+		if 'tag' in command :
+			metaDict[ command['tag'] ] = response
 		# print command['command']
 		# print response
 		# print
 
-		command['response'] = response 
-
+		command['response'] = response
 
 # ==================================
+
+
 
 
 # ==================================	WebApp Initializer
@@ -137,7 +140,7 @@ app = Flask( __name__, template_folder = template_folder )
 
 @app.route('/')
 def index():
-    return render_template("index.html", command_array = command_array)
+    return render_template("index.html", command_array = command_array, meta = metaDict)
 
 
 @app.route('/groups')
@@ -160,9 +163,6 @@ def commandListPage():
 
     return render_template("command_list.html", command_array = command_array)
 
-
-
-
 # ==================================
 
 
@@ -170,7 +170,6 @@ def commandListPage():
 
 
 if __name__ == '__main__':
-	print args
 	flask_port = args.P
 	os.system(" firefox http://localhost:%d &" % flask_port)
 	app.run( port = flask_port )

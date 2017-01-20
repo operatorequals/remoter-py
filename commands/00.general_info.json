@@ -1,0 +1,30 @@
+{
+  "commands": [
+    {
+      "command": "whoami", 
+      "description": "Current username",
+      "tag" : "username"
+    }, 
+    {
+      "command": "id -u", 
+      "description": "Current UID",
+      "tag" : "uid"
+    }, 
+    {
+      "command": "id -g", 
+      "description": "Current GID",
+      "tag" : "gid"
+    }, 
+    {
+      "command": "date", 
+      "description": "Date of the remote host",
+      "tag" : "date"
+    }, 
+    {
+      "command": "uname -a", 
+      "description": "Kernel build",
+      "tag" : "kernel"
+    } 
+  ], 
+  "name": "Basic Information"
+}

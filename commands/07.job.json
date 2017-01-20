@@ -9,7 +9,7 @@
       "description": "Scheduled jobs overview (hourly, daily, monthly etc)"
     }, 
     {
-      "command": "ls -aRl /etc/cron* | awk '\\$1 ~ /w.\\$/' 2>/dev/null", 
+      "command": "ls -aRl /etc/cron* | awk '$1 ~ /w.$/' 2>/dev/null", 
       "description": "What can 'others' write in /etc/cron* directories"
     }
   ], 
