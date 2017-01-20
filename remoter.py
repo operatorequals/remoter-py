@@ -65,13 +65,12 @@ from pprint import pprint
 client = None
 def runSocketCommand( comm ) :
 	client.send( ' ' + comm + '\n')
-	return client.recv(512)
+	return client.recv(4096*2)
 
 def runLocalhostCommand( comm ) :
 	return os.popen( comm ).read()
 
 # SSH pending
-# print args
 
 # ==================================	Socket Creator
 
@@ -119,12 +118,13 @@ for command_list in command_array :
 	# print command_list
 	for command in command_list['commands'] :
 
-		response = runCommand( command['command'] )
+		response = runCommand( command['command'] ).strip()
+		try :
+			response = response.decode('utf-8')
+		except :
+			print response
 		if 'tag' in command :
 			metaDict[ command['tag'] ] = response
-		# print command['command']
-		# print response
-		# print
 
 		command['response'] = response
 
@@ -142,12 +142,6 @@ app = Flask( __name__, template_folder = template_folder )
 def index() :
     return render_template("index.html", command_array = command_array, meta = metaDict)
 
-
-@app.route('/groups')
-def groupsPage() :
-    return render_template("groups.html", command_array = command_array)
-
-
 @app.route('/command/<filename>')
 def commandsPage( filename = filename ) :
 	for comm_list in command_array[::-1] :
@@ -155,7 +149,6 @@ def commandsPage( filename = filename ) :
 			break
 	print filename
 	return render_template("commands.html", comm_list = comm_list, meta = metaDict )
-
 
 @app.route('/commands')
 def commandListPage() :

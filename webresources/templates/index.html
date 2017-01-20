@@ -9,7 +9,7 @@
 		<link title="no title" media="all" charset="utf-8" href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet" type="text/css">
 
 		<style>
-		{% if meta['uid']!=0 %}
+		{% if meta['uid']!='0' %}
 		body {
 		    background-color: #BBFFBA;
 		}
@@ -35,7 +35,7 @@
 	<td align="center">
 		<table><tr>
 		<h5> Scan for <u><b>'{{ meta['kernel'] }}' </b></u></h5>
-		<h4>	Executed as: <b>{{ meta['username'] }}</b> at <b>{{ meta['date'] }}</b> </h4>
+		<h4>	Executed as: <b>{{ meta['username'] }}</b>(UID:{{ meta['uid']}}, GID:{{ meta['gid'] }}) at <b>{{ meta['date'] }}</b> </h4>
 		</tr>
 		<tr>	<!-- Search Button -->
 			<td width="50%"></td>
@@ -52,10 +52,6 @@
 	</tr>
 
 	<tr height="90%">
-
-<!--
-	<td  height="100%" width="20%">	<iframe width="100%" height="100%" src="/groups"> </iframe></td>
--->
 	<td>
 	<table border="1" width="100%" height="100%">
 	{% for x in command_array %}
